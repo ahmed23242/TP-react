@@ -1,0 +1,7 @@
+/* Styles pour Layout.js */
+.main-content-area {
+  flex-grow: 1; /* Permet à cette zone de prendre l'espace vertical disponible */
+  display: flex; /* Si le contenu de Outlet doit aussi être flex */
+  flex-direction: column; /* Si le contenu de Outlet doit aussi être flex */
+  /* background-color: #fff; */ /* Déjà géré par .App ou les pages spécifiques */
+} 

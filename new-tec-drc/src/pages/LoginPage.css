@@ -1,0 +1,68 @@
+/* Styles pour LoginPage.js */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.login-container {
+  width: 100%;
+  flex-grow: 1; 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  /* justify-content: space-between; */ /* Changé pour centrer le formulaire si Footer est externe */
+  justify-content: center; /* Pour mieux centrer le formulaire seul */
+  background-color: #fff; 
+  box-sizing: border-box; 
+  padding: 20px; /* Padding général */
+}
+
+.login-form-original {
+  display: flex;
+  flex-direction: column;
+  gap: 18px; 
+  align-items: center; 
+  width: 100%;
+  max-width: 450px; 
+  /* margin-top: auto; */ /* Enlever pour que le formulaire ne soit pas trop haut s'il est seul */
+  /* margin-bottom: auto; */
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px; 
+}
+
+.form-row label {
+  flex-basis: 120px; 
+  flex-shrink: 0;
+  text-align: left; 
+  font-size: 14px; 
+  color: #333;
+}
+
+.form-row input {
+  flex-grow: 1;
+  height: 38px; 
+  border-radius: 3px;
+  border: 1px solid #b0b0b0;
+  padding: 0 10px;
+  background: #fff;
+  font-size: 14px;
+}
+
+.login-form-original button {
+  margin-top: 25px; 
+  background: #b30021; 
+  color: #fff;
+  border: none;
+  border-radius: 4px; 
+  padding: 12px 45px; 
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  min-width: 180px; 
+} 

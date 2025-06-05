@@ -1,0 +1,13 @@
+/* Styles pour DashboardPage.js */
+
+.dashboard-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%; /* Assure que le conteneur prend au moins toute la hauteur de son parent (.App) */
+}
+
+.dashboard-content {
+  flex-grow: 1; /* Permet à cette section de prendre l'espace vertical disponible */
+  padding: 20px;
+  /* Autres styles pour le contenu du tableau de bord si nécessaire */
+} 
