@@ -1,0 +1,109 @@
+body {
+  /* background: #fff !important; */ /* Déplacé vers App.css pour le fond de page global */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.login-container {
+  width: 100%;
+  flex-grow: 1; /* Permet au conteneur de prendre l'espace vertical restant dans .App */
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  /* justify-content: center; */ /* Changé pour space-between pour pousser le footer vers le bas */
+  justify-content: space-between; 
+  background-color: #fff; /* Le fond de la zone de login est blanc */
+  /* border: 1px solid #ccc; */ /* Supprimé - Géré par App.css */
+  box-sizing: border-box; 
+  padding: 50px 20px 20px 20px; /* Padding: haut, droite/gauche, bas. Augmentation du padding haut. */
+  /* position: relative; */ /* Plus nécessaire si on utilise flex pour le footer */
+}
+
+.login-form-original {
+  display: flex;
+  flex-direction: column;
+  gap: 18px; /* Espace entre les rangées du formulaire et le bouton */
+  align-items: center; /* Pour centrer le bouton */
+  width: 100%;
+  max-width: 450px; /* Largeur maximale pour le formulaire */
+  margin-top: auto; /* Pour pousser le formulaire vers le centre si possible */
+  margin-bottom: auto; /* Pour pousser le formulaire vers le centre si possible */
+}
+
+/* Nouveaux styles pour les rangées du formulaire */
+.form-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px; /* Espace entre le libellé et le champ de saisie */
+}
+
+.form-row label {
+  flex-basis: 120px; /* Largeur fixe pour les libellés */
+  flex-shrink: 0;
+  text-align: left; 
+  font-size: 14px; 
+  color: #333;
+}
+
+.form-row input {
+  flex-grow: 1;
+  height: 38px; 
+  border-radius: 3px;
+  border: 1px solid #b0b0b0;
+  padding: 0 10px;
+  background: #fff;
+  font-size: 14px;
+}
+
+/* Les anciens styles pour .login-form-original label et input sont commentés car remplacés par .form-row */
+/*
+.login-form-original label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.login-form-original input {
+  width: 280px;
+  height: 35px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+  padding: 5px 10px;
+  background: #fff;
+}
+*/
+
+.login-form-original button {
+  margin-top: 25px; 
+  background: #b30021; 
+  color: #fff;
+  border: none;
+  border-radius: 4px; 
+  padding: 12px 45px; /* Ajustement du padding pour la largeur */
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  min-width: 180px; /* Largeur minimale pour le bouton */
+}
+
+/* Les styles .footer, .emblem, .copyright sont supprimés car déplacés vers Footer.css */
+
+/* Styles commentés car potentiellement plus utilisés */
+/*
+body {
+  background: #fff !important;
+}
+.login-container {
+  min-height: calc(100vh - 80px); 
+  justify-content: flex-start;
+  padding-top: 15px;
+  position: relative;
+}
+.input-row { ... }
+.flag-center { ... }
+*/

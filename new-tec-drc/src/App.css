@@ -1,5 +1,20 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  /* background-color: #f0f0f0; */ /* Plus vraiment visible si .App couvre tout */
+}
+
 .App {
-  text-align: center;
+  width: 100%; /* Prend toute la largeur */
+  min-height: 100vh; /* Prend toute la hauteur de la fenêtre d'affichage */
+  margin: 0; /* Supprime les marges extérieures */
+  /* border: 1px solid #ababab; */ /* Supprime la bordure */
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */ /* Supprime l'ombre */
+  display: flex;
+  flex-direction: column;
+  background-color: #fff; /* Le fond de l'application reste blanc */
+  overflow: hidden; /* Conserver pour la gestion du contenu interne */
 }
 
 .App-logo {

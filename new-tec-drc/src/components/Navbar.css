@@ -1,0 +1,81 @@
+/* Styles pour Navbar.js */
+
+.navbar-container-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #fff; /* Fond blanc général pour la navbar, si non spécifié par les enfants */
+  /* border: 1px solid #ababab; */ /* Supprimé - Géré par App.css */
+  /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */ /* Supprimé */
+  /* margin-bottom: 20px; */ /* Supprimé pour un flux continu */
+}
+
+.window-bar {
+  width: 100%;
+  height: 28px; 
+  background: #e0e0e0; /* Fond gris clair pour la barre de titre */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #b0b0b0; /* Ligne de séparation visible */
+  /* z-index n'est plus nécessaire ici, géré par le conteneur parent si besoin */
+}
+
+.app-title-in-bar {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+}
+
+.window-buttons {
+  display: flex;
+  gap: 8px; /* Espace entre les boutons */
+}
+
+.window-btn {
+  width: 12px; /* Taille des boutons ajustée */
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #999; /* Bordure plus visible */
+  background: #d0d0d0; /* Fond des boutons légèrement différent de la barre */
+}
+
+/* Styles pour la rangée du texte du ministère */
+.navbar-ministry-text-row {
+  padding: 15px 10px; /* Padding vertical et horizontal */
+  background: #ffffff; 
+  width: 100%;
+  box-sizing: border-box;
+  display: flex; /* Pour centrer le bloc de texte si besoin ou gérer son alignement */
+  justify-content: flex-start; /* Aligne le bloc de texte à gauche par défaut */
+}
+
+.ministry-text-block-navbar {
+  font-size: 13px; /* Taille de police pour le texte du ministère */
+  font-weight: normal; /* Police normale, pas en gras selon l'image */
+  color: #222; /* Couleur de texte foncée */
+  line-height: 1.4; /* Espacement des lignes pour le texte sur deux lignes */
+  text-align: left;
+}
+
+/* Styles pour la rangée du drapeau */
+.navbar-flag-row {
+  padding: 10px; /* Un peu de padding autour du drapeau */
+  background: #ffffff; 
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center; /* Centre le drapeau horizontalement */
+  align-items: center;
+  /* border-bottom: 1px solid #e0e0e0; */ /* Optionnel: si une séparation est voulue avant le formulaire */
+}
+
+.flag-navbar-standalone {
+  width: 120px; /* Taille du drapeau, peut être ajustée */
+  height: auto; /* Maintient les proportions */
+}
+
+/* Les anciens styles pour .navbar-second-row et .flag-navbar sont supprimés ou adaptés */ 

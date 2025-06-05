@@ -1,0 +1,19 @@
+/* Styles pour Footer.js */
+.footer-container {
+  width: 100%; 
+  text-align: center;
+  padding-top: 40px; /* Espace au-dessus du footer */
+  padding-bottom: 20px; /* Espace en bas du footer */
+  background-color: #fff; /* Assurer un fond blanc si jamais il est utilisé dans un contexte différent */
+}
+
+.footer-emblem {
+  width: 55px; 
+  margin-bottom: 8px;
+}
+
+.footer-copyright {
+  color: #007bff; 
+  font-size: 14px;
+  font-weight: normal; 
+} 
