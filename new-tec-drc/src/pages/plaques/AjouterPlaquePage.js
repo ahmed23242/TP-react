@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AjouterPlaquePage.css'; // CSS spécifique pour cette page
 
 function AjouterPlaquePage() {
+  // États pour les valeurs sélectionnées (optionnel pour l'instant, mais utile plus tard)
+  const [district, setDistrict] = useState('');
+  const [territoire, setTerritoire] = useState('');
+  const [secteur, setSecteur] = useState('');
+  const [village, setVillage] = useState('');
+  const [province, setProvince] = useState('');
+  const [nationalite, setNationalite] = useState('');
+
   // Logique pour gérer les changements de formulaire et la soumission viendra ici
 
   return (
@@ -22,22 +30,40 @@ function AjouterPlaquePage() {
 
           {/* Rangée 4 - Sélecteurs customisés */}
           <label htmlFor="district">District</label>
-          <div className="custom-select-button">Sélectionner le district <span className="select-badge">20</span></div>
+          <select id="district" name="district" value={district} onChange={(e) => setDistrict(e.target.value)} className="select-blue">
+            <option value="">Sélectionner le district</option>
+            <option value="Lukaya">Lukaya</option>
+          </select>
           
           <label htmlFor="territoire">Territoire</label>
-          <div className="custom-select-button">Sélectionner le territoire <span className="select-badge">20</span></div>
+          <select id="territoire" name="territoire" value={territoire} onChange={(e) => setTerritoire(e.target.value)} className="select-blue">
+            <option value="">Sélectionner le territoire</option>
+            <option value="Madimba">Madimba</option>
+          </select>
 
-          <label htmlFor="secteurVillage">Secteur</label> {/* Nom ajusté pour clarté */} 
-          <div className="custom-select-button">Sélectionner le secteur <span className="select-badge">20</span></div>
+          <label htmlFor="secteur">Secteur</label>
+          <select id="secteur" name="secteur" value={secteur} onChange={(e) => setSecteur(e.target.value)} className="select-blue">
+            <option value="">Sélectionner le secteur</option>
+            <option value="F">F</option>
+          </select>
 
           <label htmlFor="village">Village</label>
-          <div className="custom-select-button">Sélectionner le village <span className="select-badge">20</span></div> {/* Texte ajusté "village" */} 
+          <select id="village" name="village" value={village} onChange={(e) => setVillage(e.target.value)} className="select-blue">
+            <option value="">Sélectionner le village</option>
+            <option value="Ngeba">Ngeba</option>
+          </select>
 
           <label htmlFor="province">Province</label>
-          <div className="custom-select-button">Sélectionner la province <span className="select-badge">20</span></div> {/* Texte ajusté "province" */} 
+          <select id="province" name="province" value={province} onChange={(e) => setProvince(e.target.value)} className="select-blue">
+            <option value="">Sélectionner la province</option>
+            <option value="Kongo-Central">Kongo-Central</option>
+          </select>
 
           <label htmlFor="nationalite">Nationalité</label>
-          <div className="custom-select-button">Sélectionner la nationalité <span className="select-badge">20</span></div> {/* Texte ajusté "nationalité" */} 
+          <select id="nationalite" name="nationalite" value={nationalite} onChange={(e) => setNationalite(e.target.value)} className="select-blue">
+            <option value="">Sélectionner la nationalité</option>
+            <option value="Congolaise">Congolaise</option>
+          </select>
 
           {/* Rangée 5 - Champs texte classiques */}
           <label htmlFor="adresse">Adresse</label>

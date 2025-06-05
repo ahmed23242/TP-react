@@ -25,41 +25,29 @@
 }
 
 .form-grid input[type='text'],
-.form-grid input[type='email'] {
+.form-grid input[type='email'],
+.form-grid select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 14px;
+  background-color: #fff; /* Fond blanc pour les selects */
+  height: 40px; /* Hauteur consistante avec les inputs */
 }
 
-.custom-select-button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #007bff; /* Bleu pour les boutons de sélection */
-  color: white;
-  padding: 10px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  text-align: left;
-  border: none;
-  width: 100%;
+/* Nouvelle classe pour les selects avec fond bleu */
+.form-grid select.select-blue {
+  background-color: #007bff; /* Bleu principal */
+  color: white; /* Texte blanc pour la lisibilité */
+  border-color: #0056b3; /* Bordure un peu plus foncée */
 }
 
-.custom-select-button:hover {
-  background-color: #0056b3;
-}
-
-.select-badge {
+/* Style pour que les options du select restent lisibles (fond blanc, texte noir) */
+.form-grid select.select-blue option {
   background-color: #fff;
-  color: #007bff;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: bold;
+  color: #000;
 }
 
 .form-actions {
