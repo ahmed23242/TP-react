@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 // import Navbar from '../components/Navbar'; // Supprimé, géré par Layout
 import MainNavigationBar from '../components/MainNavigationBar';
 // import Footer from '../components/Footer'; // Supprimé, géré par Layout
@@ -12,8 +13,7 @@ function DashboardPage() {
     <div className="dashboard-page-container">
       <MainNavigationBar />
       <main className="dashboard-content">
-        <h2>Bienvenue sur le tableau de bord</h2>
-        <p>Sélectionnez une option dans la barre de navigation.</p>
+        <Outlet />
       </main>
     </div>
   );

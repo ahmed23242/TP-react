@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './MainNavigationBar.css';
 
 function MainNavigationBar() {
@@ -18,22 +18,22 @@ function MainNavigationBar() {
   return (
     <nav className="main-navigation-bar">
       <ul>
-        <li><a href="#accueil">Accueil</a></li>
+        <li><Link to="/dashboard">Accueil</Link></li>
         <li 
           onMouseEnter={() => setIsPlaquesDropdownOpen(true)}
           onMouseLeave={() => setIsPlaquesDropdownOpen(false)}
         >
-          <a href="#plaques" onClick={togglePlaquesDropdown}>Plaques</a>
+          <a href="#" onClick={(e) => e.preventDefault()}>Plaques</a>
           {isPlaquesDropdownOpen && (
             <ul className="dropdown-menu">
-              <li><a href="#controler">Contrôler</a></li>
-              <li><a href="#ajouter">Ajouter</a></li>
-              <li><a href="#modifier">Modifier</a></li>
-              <li><a href="#supprimer">Supprimer</a></li>
+              <li><Link to="#controler">Contrôler</Link></li>
+              <li><Link to="/dashboard/plaques/ajouter">Ajouter</Link></li>
+              <li><Link to="#modifier">Modifier</Link></li>
+              <li><Link to="#supprimer">Supprimer</Link></li>
             </ul>
           )}
         </li>
-        <li><a href="#dashboard">Dashboard</a></li>
+        <li><Link to="/dashboard">Dashboard</Link></li>
         <li><a href="#departement">Département</a></li>
         <li><a href="#statistiques">Statistiques</a></li>
       </ul>

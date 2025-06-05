@@ -1,0 +1,118 @@
+.ajouter-plaque-container {
+  padding: 20px;
+  background-color: #fff; /* Fond blanc pour le contenu de la page */
+  flex-grow: 1; /* Pour prendre l'espace dans le Layout */
+}
+
+.ajouter-plaque-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Espace entre la grille du formulaire et les actions du bas */
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Colonne pour les labels, colonne pour les inputs/selects */
+  gap: 15px 10px; /* Espace vertical et horizontal entre les cellules de la grille */
+  align-items: center; /* Aligne verticalement les labels et les champs */
+}
+
+.form-grid label {
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+  padding-right: 10px; /* Espace entre le label et le champ */
+}
+
+.form-grid input[type='text'],
+.form-grid input[type='email'] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.custom-select-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff; /* Bleu pour les boutons de sélection */
+  color: white;
+  padding: 10px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+  border: none;
+  width: 100%;
+}
+
+.custom-select-button:hover {
+  background-color: #0056b3;
+}
+
+.select-badge {
+  background-color: #fff;
+  color: #007bff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.form-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Deux colonnes pour les groupes d'actions */
+  gap: 10px 20px; /* Espace vertical et horizontal */
+  align-items: flex-end; /* Aligne les groupes d'action en bas */
+  margin-top: 20px; /* Espace au-dessus des boutons d'action */
+}
+
+.action-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.action-group label {
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.action-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #0056b3;
+}
+
+/* Pour les champs texte dans .form-grid qui sont sur toute la largeur disponible, 
+   et s'assurer que les labels sont bien au-dessus d'eux si l'écran est trop petit 
+   (nécessiterait des media queries plus avancées, pour l'instant on garde simple) */
+
+/* Spécificité pour les champs adresse, téléphone, email qui prennent toute la largeur
+   sur l'image, mais ici ils suivent la grille. 
+   Pour les faire s'étendre sur deux colonnes de la grille :
+   input#adresse, input#telephone, input#email {
+     grid-column: 2 / -1; 
+   }
+   label[for='adresse'], label[for='telephone'], label[for='email'] {
+     grid-column: 1 / 2;
+   }
+   Si la structure était label puis input sur la ligne suivante, une autre approche serait nécessaire.
+   Pour le moment, on les garde dans la structure label à gauche, input à droite.
+*/ 
