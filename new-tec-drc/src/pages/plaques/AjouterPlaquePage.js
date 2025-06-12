@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AjouterPlaquePage.css'; // CSS spécifique pour cette page
 import usePackageNumber from '../../hooks/usePackageNumber';
 import QRCode from '../../components/QRCode';
 import { ajouterPlaque } from '../../services/dbService';
+import { 
+  provinces, 
+  getDistricts, 
+  getTerritoires, 
+  getSecteurs, 
+  getVillages 
+} from '../../data/locations';
 
 function AjouterPlaquePage() {
   // États pour les champs du formulaire
@@ -21,6 +28,12 @@ function AjouterPlaquePage() {
     email: ''
   });
 
+  // États pour les listes déroulantes dépendantes
+  const [districts, setDistricts] = useState([]);
+  const [territoires, setTerritoires] = useState([]);
+  const [secteurs, setSecteurs] = useState([]);
+  const [villages, setVillages] = useState([]);
+
   // État pour les messages
   const [message, setMessage] = useState({ type: '', text: '' });
   
@@ -30,6 +43,58 @@ function AjouterPlaquePage() {
   const [showQRCode, setShowQRCode] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGeneratingNumber, setIsGeneratingNumber] = useState(false);
+
+  // Effet pour mettre à jour les districts quand la province change
+  useEffect(() => {
+    if (formData.province) {
+      const newDistricts = getDistricts(formData.province);
+      setDistricts(newDistricts);
+      if (!newDistricts.find(d => d.nom === formData.district)) {
+        setFormData(prev => ({ ...prev, district: '', territoire: '', secteur: '', village: '' }));
+      }
+    } else {
+      setDistricts([]);
+    }
+  }, [formData.province]);
+
+  // Effet pour mettre à jour les territoires quand le district change
+  useEffect(() => {
+    if (formData.province && formData.district) {
+      const newTerritoires = getTerritoires(formData.province, formData.district);
+      setTerritoires(newTerritoires);
+      if (!newTerritoires.find(t => t.nom === formData.territoire)) {
+        setFormData(prev => ({ ...prev, territoire: '', secteur: '', village: '' }));
+      }
+    } else {
+      setTerritoires([]);
+    }
+  }, [formData.province, formData.district]);
+
+  // Effet pour mettre à jour les secteurs quand le territoire change
+  useEffect(() => {
+    if (formData.province && formData.district && formData.territoire) {
+      const newSecteurs = getSecteurs(formData.province, formData.district, formData.territoire);
+      setSecteurs(newSecteurs);
+      if (!newSecteurs.find(s => s.nom === formData.secteur)) {
+        setFormData(prev => ({ ...prev, secteur: '', village: '' }));
+      }
+    } else {
+      setSecteurs([]);
+    }
+  }, [formData.province, formData.district, formData.territoire]);
+
+  // Effet pour mettre à jour les villages quand le secteur change
+  useEffect(() => {
+    if (formData.province && formData.district && formData.territoire && formData.secteur) {
+      const newVillages = getVillages(formData.province, formData.district, formData.territoire, formData.secteur);
+      setVillages(newVillages);
+      if (!newVillages.includes(formData.village)) {
+        setFormData(prev => ({ ...prev, village: '' }));
+      }
+    } else {
+      setVillages([]);
+    }
+  }, [formData.province, formData.district, formData.territoire, formData.secteur]);
 
   // Gestionnaire pour la génération du numéro de plaque
   const handleGenerateNumber = async () => {
@@ -152,58 +217,6 @@ function AjouterPlaquePage() {
             required
           />
 
-          <label htmlFor="district">District</label>
-          <select
-            id="district"
-            name="district"
-            value={formData.district}
-            onChange={handleChange}
-            className="select-blue"
-            required
-          >
-            <option value="">Sélectionner le district</option>
-            <option value="Lukaya">Lukaya</option>
-          </select>
-          
-          <label htmlFor="territoire">Territoire</label>
-          <select
-            id="territoire"
-            name="territoire"
-            value={formData.territoire}
-            onChange={handleChange}
-            className="select-blue"
-            required
-          >
-            <option value="">Sélectionner le territoire</option>
-            <option value="Madimba">Madimba</option>
-          </select>
-
-          <label htmlFor="secteur">Secteur</label>
-          <select
-            id="secteur"
-            name="secteur"
-            value={formData.secteur}
-            onChange={handleChange}
-            className="select-blue"
-            required
-          >
-            <option value="">Sélectionner le secteur</option>
-            <option value="F">F</option>
-          </select>
-
-          <label htmlFor="village">Village</label>
-          <select
-            id="village"
-            name="village"
-            value={formData.village}
-            onChange={handleChange}
-            className="select-blue"
-            required
-          >
-            <option value="">Sélectionner le village</option>
-            <option value="Ngeba">Ngeba</option>
-          </select>
-
           <label htmlFor="province">Province</label>
           <select
             id="province"
@@ -214,7 +227,83 @@ function AjouterPlaquePage() {
             required
           >
             <option value="">Sélectionner la province</option>
-            <option value="Kongo-Central">Kongo-Central</option>
+            {provinces.map(province => (
+              <option key={province.nom} value={province.nom}>
+                {province.nom}
+              </option>
+            ))}
+          </select>
+
+          <label htmlFor="district">District</label>
+          <select
+            id="district"
+            name="district"
+            value={formData.district}
+            onChange={handleChange}
+            className="select-blue"
+            required
+            disabled={!formData.province}
+          >
+            <option value="">Sélectionner le district</option>
+            {districts.map(district => (
+              <option key={district.nom} value={district.nom}>
+                {district.nom}
+              </option>
+            ))}
+          </select>
+          
+          <label htmlFor="territoire">Territoire</label>
+          <select
+            id="territoire"
+            name="territoire"
+            value={formData.territoire}
+            onChange={handleChange}
+            className="select-blue"
+            required
+            disabled={!formData.district}
+          >
+            <option value="">Sélectionner le territoire</option>
+            {territoires.map(territoire => (
+              <option key={territoire.nom} value={territoire.nom}>
+                {territoire.nom}
+              </option>
+            ))}
+          </select>
+
+          <label htmlFor="secteur">Secteur</label>
+          <select
+            id="secteur"
+            name="secteur"
+            value={formData.secteur}
+            onChange={handleChange}
+            className="select-blue"
+            required
+            disabled={!formData.territoire}
+          >
+            <option value="">Sélectionner le secteur</option>
+            {secteurs.map(secteur => (
+              <option key={secteur.nom} value={secteur.nom}>
+                {secteur.nom}
+              </option>
+            ))}
+          </select>
+
+          <label htmlFor="village">Village</label>
+          <select
+            id="village"
+            name="village"
+            value={formData.village}
+            onChange={handleChange}
+            className="select-blue"
+            required
+            disabled={!formData.secteur}
+          >
+            <option value="">Sélectionner le village</option>
+            {villages.map(village => (
+              <option key={village} value={village}>
+                {village}
+              </option>
+            ))}
           </select>
 
           <label htmlFor="nationalite">Nationalité</label>
