@@ -36,7 +36,7 @@ function MainNavigationBar() {
         </li>
         <li><Link to="/dashboard">Dashboard</Link></li>
         <li><a href="#departement">Département</a></li>
-        <li><a href="#statistiques">Statistiques</a></li>
+        <li><Link to="/dashboard/statistiques">Statistiques</Link></li>
       </ul>
       <button onClick={handleLogout} className="logout-button">Se déconnecter</button>
     </nav>

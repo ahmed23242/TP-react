@@ -13,6 +13,7 @@ import Layout from './components/Layout';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import AjouterPlaquePage from './pages/plaques/AjouterPlaquePage';
+import StatistiquesPage from './pages/StatistiquesPage';
 import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -34,6 +35,7 @@ function App() {
             <Route element={<Layout />}>
               <Route path="/dashboard" element={<DashboardPage />}>
                 <Route path="plaques/ajouter" element={<AjouterPlaquePage />} />
+                <Route path="statistiques" element={<StatistiquesPage />} />
               </Route>
             </Route>
           </Route>

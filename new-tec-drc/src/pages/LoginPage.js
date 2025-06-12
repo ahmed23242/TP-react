@@ -50,14 +50,7 @@ function LoginPage() {
         <button type="submit">Se connecter</button>
       </form>
       
-      {/* Information sur les utilisateurs de test (discrètement affichée) */}
-      <div className="test-users-info">
-        <p>Comptes de test :</p>
-        <ul>
-          <li>ADMIN123 / admin123</li>
-          <li>USER456 / user456</li>
-        </ul>
-      </div>
+    
     </div>
   );
 }
