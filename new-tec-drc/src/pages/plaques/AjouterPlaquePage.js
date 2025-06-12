@@ -25,16 +25,27 @@ function AjouterPlaquePage() {
   const [message, setMessage] = useState({ type: '', text: '' });
   
   // Utilisation du hook personnalisé pour la génération de numéros
-  const { currentPackageNumber, generateNewNumber } = usePackageNumber();
+  const { generateNewNumber } = usePackageNumber();
   const [numeroPlaque, setNumeroPlaque] = useState('');
   const [showQRCode, setShowQRCode] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isGeneratingNumber, setIsGeneratingNumber] = useState(false);
 
   // Gestionnaire pour la génération du numéro de plaque
-  const handleGenerateNumber = () => {
-    const newNumber = generateNewNumber();
-    setNumeroPlaque(newNumber);
-    setShowQRCode(false);
+  const handleGenerateNumber = async () => {
+    setIsGeneratingNumber(true);
+    try {
+      const newNumber = await generateNewNumber();
+      setNumeroPlaque(newNumber);
+      setShowQRCode(false);
+    } catch (error) {
+      setMessage({
+        type: 'error',
+        text: 'Erreur lors de la génération du numéro de plaque'
+      });
+    } finally {
+      setIsGeneratingNumber(false);
+    }
   };
 
   // Gestionnaire pour la génération du QR code
@@ -264,8 +275,9 @@ function AjouterPlaquePage() {
                 type="button" 
                 className="action-button"
                 onClick={handleGenerateNumber}
+                disabled={isGeneratingNumber}
               >
-                Générer numéro de plaque
+                {isGeneratingNumber ? 'Génération...' : 'Générer numéro de plaque'}
               </button>
             </div>
           </div>
@@ -290,7 +302,7 @@ function AjouterPlaquePage() {
         <button 
           type="submit" 
           className="submit-button"
-          disabled={isSubmitting}
+          disabled={isSubmitting || !numeroPlaque}
         >
           {isSubmitting ? 'Enregistrement...' : 'Enregistrer la plaque'}
         </button>

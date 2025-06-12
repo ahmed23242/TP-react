@@ -1,9 +1,5 @@
 import { useState } from 'react';
-import {
-    generatePackageNumber,
-    extractSequentialNumber,
-    extractSeries
-} from '../services/packageNumberGenerator';
+import { checkPlaqueExists } from '../services/dbService';
 
 /**
  * Hook personnalisé pour gérer la génération de numéros de paquets
@@ -11,18 +7,36 @@ import {
  */
 const usePackageNumber = () => {
     // État pour stocker le dernier numéro généré
-    const [currentPackageNumber, setCurrentPackageNumber] = useState('0001/01/A');
+    const [currentPackageNumber, setCurrentPackageNumber] = useState('');
 
     /**
      * Génère un nouveau numéro de paquet
      */
-    const generateNewNumber = () => {
-        const lastNumber = extractSequentialNumber(currentPackageNumber);
-        const currentSeries = extractSeries(currentPackageNumber);
-        
-        const newNumber = generatePackageNumber(lastNumber, currentSeries);
+    const generateNewNumber = async () => {
+        let isUnique = false;
+        let newNumber = '';
+
+        while (!isUnique) {
+            // Génération du numéro
+            const num = Math.floor(Math.random() * 9999).toString().padStart(4, '0');
+            const month = (new Date().getMonth() + 1).toString().padStart(2, '0');
+            const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+            newNumber = `${num}/${month}/${letter}`;
+
+            // Vérification de l'unicité
+            try {
+                const exists = await checkPlaqueExists(newNumber);
+                if (!exists) {
+                    isUnique = true;
+                }
+            } catch (error) {
+                console.error('Erreur lors de la vérification du numéro:', error);
+                // En cas d'erreur, on considère le numéro comme unique pour éviter une boucle infinie
+                isUnique = true;
+            }
+        }
+
         setCurrentPackageNumber(newNumber);
-        
         return newNumber;
     };
 
