@@ -25,7 +25,7 @@ export const login = (matricule, password) => {
     if (user) {
         // Stocker l'utilisateur dans le localStorage
         const { password, ...userWithoutPassword } = user;
-        localStorage.setItem('currentUser', JSON.stringify(userWithoutPassword));
+        localStorage.setItem('user', JSON.stringify(userWithoutPassword));
         return userWithoutPassword;
     }
     return null;
@@ -35,7 +35,7 @@ export const login = (matricule, password) => {
  * Déconnecte l'utilisateur
  */
 export const logout = () => {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('user');
 };
 
 /**
@@ -43,7 +43,7 @@ export const logout = () => {
  * @returns {boolean} True si un utilisateur est connecté
  */
 export const isAuthenticated = () => {
-    const user = localStorage.getItem('currentUser');
+    const user = localStorage.getItem('user');
     return !!user;
 };
 
@@ -52,6 +52,6 @@ export const isAuthenticated = () => {
  * @returns {Object|null} Utilisateur connecté ou null
  */
 export const getCurrentUser = () => {
-    const user = localStorage.getItem('currentUser');
+    const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
 }; 

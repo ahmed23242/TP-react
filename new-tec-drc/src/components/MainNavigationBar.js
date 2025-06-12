@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { logout } from '../services/authService';
 import './MainNavigationBar.css';
 
 function MainNavigationBar() {
@@ -7,7 +8,7 @@ function MainNavigationBar() {
   const [isPlaquesDropdownOpen, setIsPlaquesDropdownOpen] = useState(false);
 
   const handleLogout = () => {
-    // Logique de déconnexion à implémenter si nécessaire
+    logout(); // Appel de la fonction de déconnexion
     navigate('/login');
   };
 
