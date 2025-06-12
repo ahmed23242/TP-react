@@ -10,22 +10,16 @@ import Footer from './Footer';
 import './Layout.css';
 
 // Composant Layout : Structure principale de l'application
-function Layout() {
+const Layout = () => {
   return (
-    <>
-      {/* Barre de navigation en haut de la page */}
+    <div className="layout">
       <Navbar />
-      
-      {/* Zone principale du contenu */}
-      <main className="main-content-area">
-        {/* Outlet permet d'afficher les composants enfants selon la route active */}
+      <main className="main-content">
         <Outlet />
       </main>
-      
-      {/* Pied de page de l'application */}
       <Footer />
-    </>
+    </div>
   );
-}
+};
 
 export default Layout; 
