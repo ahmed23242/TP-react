@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './AjouterPlaquePage.css'; // CSS spécifique pour cette page
+import usePackageNumber from '../../hooks/usePackageNumber';
+import QRCode from '../../components/QRCode';
 
 function AjouterPlaquePage() {
   // États pour les valeurs sélectionnées (optionnel pour l'instant, mais utile plus tard)
@@ -9,6 +11,27 @@ function AjouterPlaquePage() {
   const [village, setVillage] = useState('');
   const [province, setProvince] = useState('');
   const [nationalite, setNationalite] = useState('');
+  
+  // Utilisation du hook personnalisé pour la génération de numéros
+  const { currentPackageNumber, generateNewNumber } = usePackageNumber();
+  const [numeroPlaque, setNumeroPlaque] = useState('');
+  const [showQRCode, setShowQRCode] = useState(false);
+
+  // Gestionnaire pour la génération du numéro de plaque
+  const handleGenerateNumber = () => {
+    const newNumber = generateNewNumber();
+    setNumeroPlaque(newNumber);
+    setShowQRCode(false); // Cacher le QR code quand un nouveau numéro est généré
+  };
+
+  // Gestionnaire pour la génération du QR code
+  const handleGenerateQRCode = () => {
+    if (numeroPlaque) {
+      setShowQRCode(true);
+    } else {
+      alert("Veuillez d'abord générer un numéro de plaque");
+    }
+  };
 
   // Logique pour gérer les changements de formulaire et la soumission viendra ici
 
@@ -79,13 +102,41 @@ function AjouterPlaquePage() {
         <div className="form-actions">
           <div className="action-group">
             <label htmlFor="numeroPlaque">Numéro de plaque</label>
-            <button type="button" className="action-button">Générer numéro de plaque</button>
+            <div className="number-display">
+              <input 
+                type="text" 
+                id="numeroPlaque" 
+                value={numeroPlaque} 
+                readOnly 
+                className="number-input"
+              />
+              <button 
+                type="button" 
+                className="action-button"
+                onClick={handleGenerateNumber}
+              >
+                Générer numéro de plaque
+              </button>
+            </div>
           </div>
           <div className="action-group">
-            {/* Espace pour aligner le deuxième bouton, ou on pourrait utiliser un label vide */} 
-            <button type="button" className="action-button">Générer le code-barre</button>
+            <button 
+              type="button" 
+              className="action-button"
+              onClick={handleGenerateQRCode}
+              disabled={!numeroPlaque}
+            >
+              Générer le QR code
+            </button>
           </div>
         </div>
+
+        {/* Affichage du QR code */}
+        {showQRCode && numeroPlaque && (
+          <div className="qrcode-section">
+            <QRCode value={numeroPlaque} />
+          </div>
+        )}
       </form>
     </div>
   );

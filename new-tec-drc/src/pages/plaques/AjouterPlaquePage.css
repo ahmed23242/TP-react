@@ -88,6 +88,62 @@
   background-color: #0056b3;
 }
 
+.action-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Styles pour le champ de numéro de plaque */
+.number-display {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.number-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: monospace;
+  background-color: #f8f9fa;
+  color: #333;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: default;
+}
+
+.number-input:read-only {
+  background-color: #f8f9fa;
+}
+
+/* Styles pour la section du QR code */
+.qrcode-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+/* Styles pour la section du code-barre */
+.barcode-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
 /* Pour les champs texte dans .form-grid qui sont sur toute la largeur disponible, 
    et s'assurer que les labels sont bien au-dessus d'eux si l'écran est trop petit 
    (nécessiterait des media queries plus avancées, pour l'instant on garde simple) */
